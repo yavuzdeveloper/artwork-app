@@ -4,15 +4,27 @@ import { Artwork } from "@/types";
 
 const API_URL = "https://api.artic.edu/api/v1";
 
-export const fetchArtworks = async () => {
-  const response = await axios.get(`${API_URL}/artworks`);
-  return response.data.data.map((artwork: any) => ({
+export async function fetchArtworks(page: number = 1) {
+  const res = await fetch(
+    `https://api.artic.edu/api/v1/artworks?page=${page}&limit=12`,
+    { next: { revalidate: 3600 } }
+  );
+  const data = await res.json();
+
+  const iiif_url = data.config.iiif_url;
+
+  const artworks = data.data.map((artwork: any) => ({
     id: artwork.id,
     title: artwork.title,
     image_id: artwork.image_id,
-    iiif_url: response.data.config.iiif_url,
+    iiif_url: iiif_url,
   }));
-};
+
+  return {
+    artworks,
+    pagination: data.pagination,
+  };
+}
 
 export const fetchArtwork = async (id: string): Promise<Artwork> => {
   const response = await axios.get(`${API_URL}/artworks/${id}`);
