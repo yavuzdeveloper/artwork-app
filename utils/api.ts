@@ -16,10 +16,11 @@ export const fetchArtworks = async () => {
 
 export const fetchArtwork = async (id: string): Promise<Artwork> => {
   const response = await axios.get(`${API_URL}/artworks/${id}`);
+
   return {
     id: response.data.data.id.toString(),
     title: response.data.data.title,
-    description: response.data.data.description || "No description available",
+    description: response.data.data.description || "",
     image_id: response.data.data.image_id,
     iiif_url: response.data.config.iiif_url,
   };
