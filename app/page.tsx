@@ -6,11 +6,12 @@ import { Suspense } from "react";
 import SearchBar from "@/components/SearchBar";
 import EmptyState from "@/components/EmptyState";
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { page?: string; search?: string };
-}) {
+export default async function Home(
+  props: {
+    searchParams: Promise<{ page?: string; search?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const page = Number(searchParams?.page || 1);
   const searchQuery = searchParams?.search;
 
