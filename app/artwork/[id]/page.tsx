@@ -2,7 +2,7 @@ import { use } from "react";
 
 import { fetchArtwork } from "@/utils/api";
 import ArtworkDescription from "@/components/ArtworkDescription";
-import Image from "@/components/Image";
+import LightboxImage from "@/components/LightboxImage";
 import BackToArtCollection from "@/components/BackToArtCollection";
 
 export default function ArtworkPage({
@@ -19,12 +19,11 @@ export default function ArtworkPage({
         <BackToArtCollection />
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="p-4">
-            <Image
+            <LightboxImage
               artwork={artwork}
               className="w-full h-auto max-h-[70vh] object-contain mx-auto"
             />
           </div>
-
           <div className="p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-2">
               {artwork.title}

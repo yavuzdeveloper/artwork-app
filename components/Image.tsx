@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import { Artwork } from "@/types";
+import { FALLBACK_IMAGE } from "@/constant";
 
 interface ImageProps {
   artwork: Artwork;
@@ -9,11 +11,12 @@ interface ImageProps {
 }
 
 export default function Image({ artwork, className }: ImageProps) {
-  const [src, setSrc] = useState(
-    artwork.image_id
-      ? `${artwork.iiif_url}/${artwork.image_id}/full/843,/0/default.jpg`
-      : "https://www.wavonline.com/a/img/no_image_available.jpeg"
-  );
+  const imageSrc = `${artwork.iiif_url}/${artwork.image_id}/full/843,/0/default.jpg`;
+  const [src, setSrc] = useState(FALLBACK_IMAGE);
+
+  useEffect(() => {
+    setSrc(imageSrc);
+  }, [imageSrc]);
 
   return (
     <img
@@ -21,9 +24,9 @@ export default function Image({ artwork, className }: ImageProps) {
       src={src}
       alt={artwork.title}
       loading="lazy"
-      onError={() =>
-        setSrc("https://www.wavonline.com/a/img/no_image_available.jpeg")
-      }
+      onError={() => {
+        setSrc(FALLBACK_IMAGE);
+      }}
     />
   );
 }
