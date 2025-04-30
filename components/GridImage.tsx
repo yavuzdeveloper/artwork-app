@@ -10,7 +10,7 @@ interface ImageProps {
   className: string;
 }
 
-export default function Image({ artwork, className }: ImageProps) {
+export default function GridImage({ artwork, className }: ImageProps) {
   const imageSrc = `${artwork.iiif_url}/${artwork.image_id}/full/843,/0/default.jpg`;
   const [src, setSrc] = useState(FALLBACK_IMAGE);
 
@@ -22,7 +22,7 @@ export default function Image({ artwork, className }: ImageProps) {
     <img
       className={className}
       src={src}
-      alt={artwork.title}
+      alt={artwork.title || "Art work"}
       loading="lazy"
       onError={() => {
         setSrc(FALLBACK_IMAGE);

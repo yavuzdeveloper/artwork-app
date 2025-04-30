@@ -1,6 +1,7 @@
 import Link from "next/link";
+
 import { Artwork } from "@/types";
-import Image from "./Image";
+import GridImage from "./GridImage";
 
 export default function ArtworkCard({ artwork }: { artwork: Artwork }) {
   return (
@@ -9,7 +10,7 @@ export default function ArtworkCard({ artwork }: { artwork: Artwork }) {
       className="group relative block overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1"
     >
       <div className="relative aspect-square overflow-hidden bg-gray-100">
-        <Image
+        <GridImage
           artwork={artwork}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />

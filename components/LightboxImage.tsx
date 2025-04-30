@@ -4,14 +4,17 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { FALLBACK_IMAGE } from "@/constant";
+import { Artwork } from "@/types";
+
+interface LightboxImageProps {
+  artwork: Artwork;
+  className?: string;
+}
 
 export default function LightboxImage({
   artwork,
-  className = "",
-}: {
-  artwork: any;
-  className?: string;
-}) {
+  className,
+}: LightboxImageProps) {
   const imageSrc = `${artwork.iiif_url}/${artwork.image_id}/full/843,/0/default.jpg`;
   const [isOpen, setIsOpen] = useState(false);
 
