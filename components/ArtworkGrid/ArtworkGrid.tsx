@@ -1,5 +1,5 @@
 import { Artwork } from "@/types";
-import ArtworkCard from "./ArtworkCard";
+import ArtworkCard from "../ArtworkCard/ArtworkCard";
 
 export default function ArtworkGrid({ artworks }: { artworks: Artwork[] }) {
   return (

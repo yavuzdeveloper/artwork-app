@@ -1,16 +1,15 @@
-import { fetchArtworks } from "@/utils/api";
-import ArtworkGrid from "@/components/ArtworkGrid";
-import { ArtworkGridSkeleton } from "@/components/ArtworkGridSkeleton";
-import Pagination from "@/components/Pagination";
 import { Suspense } from "react";
-import SearchBar from "@/components/SearchBar";
-import EmptyState from "@/components/EmptyState";
 
-export default async function Home(
-  props: {
-    searchParams: Promise<{ page?: string; search?: string }>;
-  }
-) {
+import ArtworkGrid from "@/components/ArtworkGrid/ArtworkGrid";
+import { ArtworkGridSkeleton } from "@/components/ArtworkGrid/ArtworkGridSkeleton";
+import EmptyState from "@/components/EmptyState/EmptyState";
+import Pagination from "@/components/Pagination/Pagination";
+import SearchBar from "@/components/SearchBar/SearchBar";
+import { fetchArtworks } from "@/utils/api";
+
+export default async function Home(props: {
+  searchParams: Promise<{ page?: string; search?: string }>;
+}) {
   const searchParams = await props.searchParams;
   const page = Number(searchParams?.page || 1);
   const searchQuery = searchParams?.search;

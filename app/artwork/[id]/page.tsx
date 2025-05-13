@@ -1,9 +1,9 @@
 import { use } from "react";
 
 import { fetchArtwork } from "@/utils/api";
-import ArtworkDescription from "@/components/ArtworkDescription";
-import LightboxImage from "@/components/LightboxImage";
-import BackToArtCollection from "@/components/BackToArtCollection";
+import ArtworkDescription from "@/components/ArtworkDescription/ArtworkDescription";
+import LightboxImage from "@/components/LightboxImage/LightboxImage";
+import BackToArtCollection from "@/components/BackToArtCollection/BackToArtCollection";
 import Share from "@/ui/Share";
 import Like from "@/ui/Like";
 
