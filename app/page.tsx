@@ -3,24 +3,17 @@ import ArtworkGrid from "@/components/ArtworkGrid";
 import { ArtworkGridSkeleton } from "@/components/ArtworkGridSkeleton";
 import Pagination from "@/components/Pagination";
 import { Suspense } from "react";
-import SearchBar from "@/components/SearchBar";
 import EmptyState from "@/components/EmptyState";
 
-export default async function Home(
-  props: {
-    searchParams: Promise<{ page?: string; search?: string }>;
-  }
-) {
+export default async function Home(props: {
+  searchParams: Promise<{ page?: string; search?: string }>;
+}) {
   const searchParams = await props.searchParams;
   const page = Number(searchParams?.page || 1);
   const searchQuery = searchParams?.search;
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
-        Art Collection
-      </h1>
-      <SearchBar />
       <Suspense fallback={<ArtworkGridSkeleton />}>
         <ArtworkGridWrapper page={page} searchQuery={searchQuery} />
       </Suspense>
