@@ -1,7 +1,9 @@
 "use client";
 
+import SearchIcon from "@/ui/SearchIcon";
 import SearchBar from "./SearchBar";
 import { usePathname } from "next/navigation";
+import { Suspense } from "react";
 
 export default function Header() {
   const pathname = usePathname();
@@ -21,7 +23,9 @@ export default function Header() {
 
           {isHomePage && (
             <div className="flex-1">
-              <SearchBar />
+              <Suspense fallback={<SearchIcon className="w-5 h-5" />}>
+                <SearchBar />
+              </Suspense>
             </div>
           )}
         </div>
