@@ -1,9 +1,10 @@
 "use client";
 
-import SearchIcon from "@/ui/SearchIcon";
-import SearchBar from "./SearchBar";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
+
+import SearchIcon from "@/ui/SearchIcon";
+import SearchBar from "./SearchBar/SearchBar";
 
 export default function Header() {
   const pathname = usePathname();
