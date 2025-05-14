@@ -5,10 +5,10 @@ import { Artwork } from "@/types";
 const API_URL = "https://api.artic.edu/api/v1";
 
 export async function fetchArtworks(page: number = 1, searchQuery?: string) {
-  let url = `https://api.artic.edu/api/v1/artworks?page=${page}&limit=12&fields=id,title,image_id`;
+  let url = `${API_URL}/artworks?page=${page}&limit=12&fields=id,title,image_id`;
 
   if (searchQuery) {
-    url = `https://api.artic.edu/api/v1/artworks/search?q=${encodeURIComponent(
+    url = `${API_URL}/artworks/search?q=${encodeURIComponent(
       searchQuery
     )}&page=${page}&limit=12&fields=id,title,image_id`;
   }

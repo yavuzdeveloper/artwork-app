@@ -31,7 +31,7 @@ export default function ArtworkPage({
               <h2 className="text-xl font-bold text-gray-900">
                 {artwork.title}
               </h2>
-              <div className="flex flex-col gap-3 absolute top-4 right-4">
+              <div className="flex flex-col gap-3 absolute top-20 right-4">
                 {/* Like Button */}
                 <div className="bg-white/80 backdrop-blur-sm p-2 rounded-lg shadow-sm hover:shadow-md transition-all">
                   <button

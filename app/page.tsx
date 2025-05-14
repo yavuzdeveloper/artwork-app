@@ -4,7 +4,6 @@ import ArtworkGrid from "@/components/ArtworkGrid/ArtworkGrid";
 import { ArtworkGridSkeleton } from "@/components/ArtworkGrid/ArtworkGridSkeleton";
 import EmptyState from "@/components/EmptyState/EmptyState";
 import Pagination from "@/components/Pagination/Pagination";
-import SearchBar from "@/components/SearchBar/SearchBar";
 import { fetchArtworks } from "@/utils/api";
 
 export default async function Home(props: {
@@ -16,10 +15,6 @@ export default async function Home(props: {
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
-        Art Collection
-      </h1>
-      <SearchBar />
       <Suspense fallback={<ArtworkGridSkeleton />}>
         <ArtworkGridWrapper page={page} searchQuery={searchQuery} />
       </Suspense>
