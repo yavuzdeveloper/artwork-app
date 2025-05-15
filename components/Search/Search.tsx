@@ -77,7 +77,7 @@ export default function Search() {
         <button
           onClick={toggleSearch}
           className="p-2 text-gray-500 hover:text-blue-600 transition-colors"
-          aria-label="Search"
+          aria-label="Search..."
         >
           <SearchIcon className="w-6 h-6" />
         </button>
