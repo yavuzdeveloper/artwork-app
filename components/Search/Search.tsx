@@ -62,7 +62,7 @@ export default function Search() {
               type="text"
               value={query}
               onChange={e => setQuery(e.target.value)}
-              placeholder="Search"
+              placeholder="Search..."
               className="w-full min-w-[150px] sm:min-w-[300px] px-4 pr-9 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-base"
             />
             <button
@@ -77,7 +77,7 @@ export default function Search() {
         <button
           onClick={toggleSearch}
           className="p-2 text-gray-500 hover:text-blue-600 transition-colors"
-          aria-label="Search..."
+          aria-label="Search"
         >
           <SearchIcon className="w-6 h-6" />
         </button>
