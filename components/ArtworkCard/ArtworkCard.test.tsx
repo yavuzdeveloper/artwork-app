@@ -1,5 +1,5 @@
-import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
+
 import ArtworkCard from "./ArtworkCard";
 import { Artwork } from "@/types";
 
@@ -25,6 +25,7 @@ jest.mock("../GridImage/GridImage", () => ({
     artwork: Artwork;
     className: string;
   }) => (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={`${artwork.iiif_url}/${artwork.image_id}/full/843,/0/default.jpg`}
       alt={artwork.title}
