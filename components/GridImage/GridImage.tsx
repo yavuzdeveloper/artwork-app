@@ -27,6 +27,7 @@ export default function GridImage({ artwork, className }: ImageProps) {
       onError={() => {
         setSrc(FALLBACK_IMAGE);
       }}
+      data-testid="grid-image"
     />
   );
 }

@@ -1,9 +1,10 @@
-import { fetchArtworks } from "@/utils/api";
-import ArtworkGrid from "@/components/ArtworkGrid";
-import { ArtworkGridSkeleton } from "@/components/ArtworkGridSkeleton";
-import Pagination from "@/components/Pagination";
 import { Suspense } from "react";
-import EmptyState from "@/components/EmptyState";
+
+import ArtworkGrid from "@/components/ArtworkGrid/ArtworkGrid";
+import { ArtworkGridSkeleton } from "@/components/ArtworkGrid/ArtworkGridSkeleton";
+import EmptyState from "@/components/EmptyState/EmptyState";
+import Pagination from "@/components/Pagination/Pagination";
+import { fetchArtworks } from "@/utils/api";
 
 export default async function Home(props: {
   searchParams: Promise<{ page?: string; search?: string }>;

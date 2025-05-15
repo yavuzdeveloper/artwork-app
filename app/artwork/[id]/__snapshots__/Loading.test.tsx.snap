@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading Component matches snapshot without test IDs 1`] = `
+<div>
+  <div
+    class="max-w-4xl mx-auto"
+  >
+    <div
+      class="inline-block"
+    >
+      <div
+        class="h-6 w-40 bg-gray-200 rounded animate-pulse mb-6"
+      />
+    </div>
+    <div
+      class="bg-white rounded-lg shadow-sm overflow-hidden"
+    >
+      <div
+        class="px-4 py-4"
+      >
+        <img
+          alt="Art work"
+          class="w-full h-auto max-h-[70vh] object-contain mx-auto"
+          src="/fallback-image.jpg"
+        />
+      </div>
+      <div
+        class="p-6"
+      >
+        <div
+          class="h-8 w-1/2 bg-gray-200 rounded animate-pulse mb-4"
+        />
+        <div
+          class="h-6 w-1/5 bg-gray-200 rounded animate-pulse"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

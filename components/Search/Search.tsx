@@ -4,7 +4,7 @@ import SearchIcon from "@/ui/SearchIcon";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function SearchBar() {
+export default function Search() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
@@ -51,7 +51,11 @@ export default function SearchBar() {
   return (
     <div className="flex items-center justify-end">
       {isExpanded ? (
-        <form onSubmit={handleSubmit} className="animate-fade-in">
+        <form
+          onSubmit={handleSubmit}
+          className="animate-fade-in"
+          data-testid="search-form"
+        >
           <div className="relative">
             <input
               id="search-input"
@@ -73,7 +77,7 @@ export default function SearchBar() {
         <button
           onClick={toggleSearch}
           className="p-2 text-gray-500 hover:text-blue-600 transition-colors"
-          aria-label="Open search"
+          aria-label="Search..."
         >
           <SearchIcon className="w-6 h-6" />
         </button>

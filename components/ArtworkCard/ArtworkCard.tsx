@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Artwork } from "@/types";
-import GridImage from "./GridImage";
+import GridImage from "../GridImage/GridImage";
 
 export default function ArtworkCard({ artwork }: { artwork: Artwork }) {
   return (
