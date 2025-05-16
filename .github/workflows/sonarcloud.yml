@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetch all history for all tags and branches
+          fetch-depth: 0 # Fetch all history for all tags and branches.
 
       - name: SonarCloud Analysis
         uses: SonarSource/sonarqube-scan-action@v5.0.0
@@ -22,4 +22,4 @@ jobs:
         with:
           args: >
             -Dsonar.organization=yavuzdeveloper
-            -Dsonar.projectKey=artwork-app
+            -Dsonar.projectKey=yavuzdeveloper_artwork-app
