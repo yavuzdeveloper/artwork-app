@@ -34,8 +34,7 @@ export default function Search() {
   };
 
   const toggleSearch = () => {
-    throw new Error("Sentry is implemented...");
-
+    testError();
     setIsExpanded(!isExpanded);
     if (!isExpanded) {
       // Focus input when expanding
@@ -49,6 +48,10 @@ export default function Search() {
       params.delete("search");
       router.push(`/?${params.toString()}`);
     }
+  };
+
+  const testError = () => {
+    throw new Error("Sentry is implemented...");
   };
 
   return (
