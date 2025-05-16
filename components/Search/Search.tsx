@@ -38,8 +38,7 @@ export default function Search() {
     if (!isExpanded) {
       // Focus input when expanding
       setTimeout(() => {
-        const input = document.getElementById("search-input");
-        input?.focus();
+        focusInput();
       }, 100);
     } else if (!query.trim()) {
       // Clear search when collapsing if empty
@@ -47,6 +46,16 @@ export default function Search() {
       params.delete("search");
       router.push(`/?${params.toString()}`);
     }
+  };
+
+  const focusInput = () => {
+    const input = document.getElementById("search-input");
+    input?.focus();
+  };
+
+  const clearSearch = () => {
+    setQuery("");
+    focusInput();
   };
 
   return (
@@ -78,7 +87,7 @@ export default function Search() {
             {query && (
               <button
                 type="button"
-                onClick={() => setQuery("")}
+                onClick={clearSearch}
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-600 transition-colors hover:cursor-pointer"
                 title="Clear"
               >
