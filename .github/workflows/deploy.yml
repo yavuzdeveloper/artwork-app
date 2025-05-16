@@ -1,23 +1,30 @@
-# name: Deploy to Production
+name: Deploy to Production
 
-# on:
-#   push:
-#     branches:
-#       - main # just works after merge
+on:
+  push:
+    branches:
+      - master
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-#       - name: Install dependencies
-#         run: npm ci
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
 
-#       - name: Build project
-#         run: npm run build
+      - name: Install dependencies
+        run: npm ci
 
-#     #   - name: Deploy
-#     #     run: echo "Deploying to production"
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy
+        run: npm run deploy
+        env:
+          YOUR_DEPLOY_SECRET: ${{ secrets.YOUR_DEPLOY_SECRET }}
