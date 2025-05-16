@@ -53,6 +53,11 @@ export default function Search() {
     input?.focus();
   };
 
+  const clearSearch = () => {
+    setQuery("");
+    focusInput();
+  };
+
   return (
     <div className="flex items-center justify-end">
       {isExpanded ? (
@@ -82,10 +87,7 @@ export default function Search() {
             {query && (
               <button
                 type="button"
-                onClick={() => {
-                  setQuery("");
-                  focusInput();
-                }}
+                onClick={clearSearch}
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-600 transition-colors hover:cursor-pointer"
                 title="Clear"
               >
