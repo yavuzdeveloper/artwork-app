@@ -22,4 +22,4 @@ jobs:
         with:
           args: >
             -Dsonar.organization=yavuzdeveloper
-            -Dsonar.projectKey=yavuzdeveloper
+            -Dsonar.projectKey=yavuzdeveloper_artwork-app
