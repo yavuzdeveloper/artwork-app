@@ -26,5 +26,3 @@ jobs:
 
       - name: Deploy
         run: npm run deploy
-        env:
-          YOUR_DEPLOY_SECRET: ${{ secrets.YOUR_DEPLOY_SECRET }}
