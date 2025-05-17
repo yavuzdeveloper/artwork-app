@@ -56,7 +56,6 @@ export default function Search() {
   const clearSearch = () => {
     setQuery("");
     focusInput();
-    throw new Error("submit...");
   };
 
   return (
