@@ -12,18 +12,21 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "type-check": "tsc --noEmit",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@sentry/nextjs": "^9.19.0",
     "axios": "^1.9.0",
     "framer-motion": "^12.9.2",
     "next": "15.3.1",
+    "playwright": "^1.52.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.52.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

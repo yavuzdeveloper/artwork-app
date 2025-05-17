@@ -8,6 +8,7 @@ export default function ArtworkCard({ artwork }: { artwork: Artwork }) {
     <Link
       href={`/artwork/${artwork.id}`}
       className="group relative block overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1"
+      data-testid="artwork-card"
     >
       <div className="relative aspect-square overflow-hidden bg-gray-100">
         <GridImage
