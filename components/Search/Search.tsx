@@ -55,6 +55,10 @@ export default function Search() {
 
   const clearSearch = () => {
     setQuery("");
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("search");
+    params.set("page", "1");
+    router.push(`/?${params.toString()}`);
     focusInput();
   };
 
