@@ -4,7 +4,6 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-  PaginationEllipsis,
 } from "./pagination";
 
 describe("Pagination components", () => {
