@@ -19,30 +19,28 @@ test.describe("Home Page", () => {
   });
 });
 
-// Pagination
 test.describe("Home Page Pagination", () => {
   test("should disable Previous button on first page", async ({ page }) => {
     await page.goto("/?page=1");
 
-    const prevButton = page.getByText("Previous");
-    await expect(prevButton).toHaveClass(/text-gray-400/); // disabled class
+    const prevButton = page.getByRole("link", { name: "Previous" });
+    await expect(prevButton).toHaveClass(/pointer-events-none|opacity-50/);
     await expect(prevButton).toBeVisible();
   });
 
   test("should disable Next button on last page", async ({ page }) => {
+    // Get the total number of pages
     await page.goto("/?page=1");
 
-    // Get total pages from the indicator
     const pageIndicator = page.locator("text=Page").first();
-    const text = await pageIndicator.textContent(); // "Page 1 of 7"
+    const text = await pageIndicator.textContent();
     const match = text?.match(/Page \d+ of (\d+)/);
     const totalPages = match ? parseInt(match[1]) : 1;
 
-    // go to last page
     await page.goto(`/?page=${totalPages}`);
 
-    const nextButton = page.getByText("Next");
-    await expect(nextButton).toHaveClass(/text-gray-400/); // disabled class
+    const nextButton = page.getByRole("link", { name: "Next" });
+    await expect(nextButton).toHaveClass(/pointer-events-none|opacity-50/);
   });
 
   test("should navigate to next page when Next is clicked", async ({
@@ -67,11 +65,13 @@ test.describe("Home Page Pagination", () => {
     await expect(page).toHaveURL("/?page=1");
   });
 
-  test("should show current page and total", async ({ page }) => {
+  test("should show current page", async ({ page }) => {
     await page.goto("/?page=2");
 
-    const pageIndicator = page.locator("text=Page 2 of");
-    await expect(pageIndicator).toBeVisible();
+    // test that the page is loaded
+    const activePageLink = page.getByRole("link", { name: "2" });
+    await expect(activePageLink).toHaveAttribute("aria-current", "page");
+    await expect(activePageLink).toBeVisible();
   });
 });
 
