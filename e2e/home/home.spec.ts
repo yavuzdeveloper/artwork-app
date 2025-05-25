@@ -95,6 +95,31 @@ test("should show empty state if no search results found", async ({ page }) => {
   await expect(empty).toBeVisible();
 });
 
+test("should search when input is submitted", async ({ page }) => {
+  await page.goto("/");
+
+  // select the Search
+  const openSearchButton = page.locator('[data-testid="search-button"]');
+  await openSearchButton.click();
+
+  // wait for the search input to be visible
+  const searchInput = page.locator('[data-testid="search-input"]');
+  await expect(searchInput).toBeVisible();
+
+  // Do the search
+  await searchInput.fill("van gogh");
+  await searchInput.press("Enter");
+
+  // wait for the search results to be displayed
+  await expect(page).toHaveURL(/search=van(\+|%20)gogh/);
+
+  // check that the search results are displayed
+  const artworkCard = page.locator('[data-testid="artwork-card"]');
+  const emptyState = page.locator('[data-testid="empty-state"]');
+
+  await expect(artworkCard.first().or(emptyState)).toBeVisible();
+});
+
 // Detail Page
 test("should navigate to artwork detail page", async ({ page }) => {
   await page.goto("/");
@@ -104,4 +129,38 @@ test("should navigate to artwork detail page", async ({ page }) => {
 
   await expect(page).toHaveURL(/\/artwork\/\d+/); // if the URL contains /artwork/:id
   await expect(page.locator("h2")).toBeVisible(); // if the title is visible
+});
+
+test("should show error or fallback UI on invalid artwork ID", async ({
+  page,
+}) => {
+  await page.goto("/artwork/999999999999"); // assumed to be invalid
+
+  const errorMessage = page.locator('[data-testid="error-container"]');
+  await expect(errorMessage).toBeVisible();
+});
+
+// Mobile
+test.use({ viewport: { width: 375, height: 812 } }); // iPhone X size
+
+test("should display mobile-friendly layout", async ({ page }) => {
+  await page.goto("/");
+
+  // test that the page is loaded
+  await expect(page.locator("nav")).toBeVisible();
+
+  const artworkCard = page.locator('[data-testid="artwork-card"]');
+
+  // test that at least one artwork card is visible
+  await expect(artworkCard.first()).toBeVisible();
+});
+
+// Browser Back
+test("should go back to home when browser back is used", async ({ page }) => {
+  await page.goto("/");
+  await page.locator('[data-testid="artwork-card"]').first().click();
+
+  await expect(page).toHaveURL(/\/artwork\/\d+/);
+  await page.goBack();
+  await expect(page).toHaveURL("/");
 });

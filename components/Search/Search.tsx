@@ -80,6 +80,7 @@ export default function Search() {
             </button>
             <input
               id="search-input"
+              data-testid="search-input"
               type="text"
               value={query}
               onChange={e => setQuery(e.target.value)}
@@ -106,6 +107,7 @@ export default function Search() {
           className="p-2 text-gray-500 hover:text-blue-600 transition-colors hover:cursor-pointer"
           aria-label="Search"
           title="Search"
+          data-testid="search-button"
         >
           <SearchIcon className="w-6 h-6" />
         </button>
