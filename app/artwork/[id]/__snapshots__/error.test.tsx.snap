@@ -4,6 +4,7 @@ exports[`Error Component matches snapshot 1`] = `
 <DocumentFragment>
   <div
     class="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6"
+    data-testid="error-container"
   >
     <div
       class="max-w-md w-full text-center"

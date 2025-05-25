@@ -8,7 +8,10 @@ export default function Error({ error }: { error: Error }) {
   }, [error]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6"
+      data-testid="error-container"
+    >
       <div className="max-w-md w-full text-center">
         <h1 className="text-3xl font-bold text-gray-800 mb-6">
           Oops! Something went wrong.
