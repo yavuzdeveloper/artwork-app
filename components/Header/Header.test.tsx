@@ -74,4 +74,18 @@ describe("Header Component", () => {
     // This is tricky because the icon is inside Suspense
     // You might need to adjust the test or the component to better test loading states
   });
+
+  it("when you click on the title, it navigates to the home page", () => {
+    // Mock home page path
+    (usePathname as jest.Mock).mockReturnValue("/");
+
+    render(<Header />);
+
+    // Click on the title
+    const title = screen.getByTestId("header-title");
+    title.click();
+
+    // Check if the path has changed
+    expect(window.location.pathname).toBe("/");
+  });
 });

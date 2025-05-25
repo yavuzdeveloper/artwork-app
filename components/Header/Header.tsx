@@ -5,9 +5,11 @@ import { Suspense } from "react";
 
 import SearchIcon from "@/ui/SearchIcon";
 import Search from "../Search/Search";
+import Link from "next/link";
 
 export default function Header() {
   const pathname = usePathname();
+
   const isHomePage = pathname === "/";
 
   return (
@@ -18,9 +20,13 @@ export default function Header() {
             isHomePage ? "justify-between" : "justify-center"
           } gap-4`}
         >
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 whitespace-nowrap">
+          <Link
+            href={"/"}
+            className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 whitespace-nowrap cursor-pointer"
+            data-testid="header-title"
+          >
             Art Collection
-          </h1>
+          </Link>
 
           {isHomePage && (
             <div className="flex-1">
