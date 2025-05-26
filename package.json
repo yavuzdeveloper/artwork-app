@@ -13,7 +13,8 @@
     "test:watch": "jest --watch",
     "type-check": "tsc --noEmit",
     "deploy": "vercel --prod",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "lhci": "lhci autorun"
   },
   "dependencies": {
     "@opentelemetry/core": "^2.0.1",
@@ -23,6 +24,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.9.2",
+    "lighthouse": "^12.6.0",
+    "lighthouse-ci": "^1.13.1",
     "lucide-react": "^0.511.0",
     "next": "15.3.1",
     "playwright": "^1.52.0",
