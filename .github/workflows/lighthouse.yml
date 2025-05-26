@@ -1,12 +1,11 @@
 name: Lighthouse CI
 
 on:
-  push:
-    branches: [main, master]
   pull_request:
+    branches: [main, master]
 
 jobs:
-  lighthouse-ci:
+  lighthouse:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,20 +15,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "20"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Run Lighthouse
-        run: |
-          npx lighthouse https://artwork-app-wine.vercel.app/ \
-            --output=json \
-            --output-path=./lighthouse-report.json \
-            --quiet
+      - name: Install Lighthouse CI
+        run: npm install --save-dev @lhci/cli
 
-      - name: Upload Lighthouse report as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse-report
-          path: ./lighthouse-report.json
+      - name: Run Lighthouse CI
+        run: npm run lhci
