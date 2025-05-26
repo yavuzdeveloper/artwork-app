@@ -5,7 +5,7 @@ import GridImage from "./GridImage";
 
 // Mock the FALLBACK_IMAGE constant
 jest.mock("@/constant", () => ({
-  FALLBACK_IMAGE: "fallback-image.jpg",
+  FALLBACK_IMAGE: "/fallback-image.jpg",
 }));
 
 describe("GridImage", () => {
@@ -33,12 +33,13 @@ describe("GridImage", () => {
     // Mock useState to return fallback image initially
     jest
       .spyOn(React, "useState")
-      .mockImplementationOnce(() => ["fallback-image.jpg", jest.fn()]);
+      .mockImplementationOnce(() => ["/fallback-image.jpg", jest.fn()]);
 
     render(<GridImage artwork={mockArtwork} className="test-class" />);
 
     const img = screen.getByRole("img");
-    expect(img).toHaveAttribute("src", "fallback-image.jpg");
+    expect(img.getAttribute("src")).toMatch(/fallback-image\.jpg/);
+
     expect(img).toHaveClass("test-class");
     expect(img).toHaveAttribute("alt", "Test Artwork");
     expect(img).toHaveAttribute("loading", "lazy");
@@ -67,10 +68,8 @@ describe("GridImage", () => {
       imgElement.dispatchEvent(new Event("error"));
     });
 
-    expect(screen.getByRole("img")).toHaveAttribute(
-      "src",
-      "fallback-image.jpg"
-    );
+    const img = screen.getByRole("img");
+    expect(img.getAttribute("src")).toMatch(/fallback-image\.jpg/);
   });
 
   it("uses default alt text when title is missing", () => {

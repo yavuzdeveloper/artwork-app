@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 import { Artwork } from "@/types";
 import { FALLBACK_IMAGE } from "@/constant";
@@ -19,15 +20,15 @@ export default function GridImage({ artwork, className }: ImageProps) {
   }, [imageSrc]);
 
   return (
-    <img
+    <Image
       className={className}
       src={src}
       alt={artwork.title || "Art work"}
       loading="lazy"
-      onError={() => {
-        setSrc(FALLBACK_IMAGE);
-      }}
       data-testid="grid-image"
+      width={500}
+      height={500}
+      onError={() => setSrc(FALLBACK_IMAGE)}
     />
   );
 }
