@@ -13,7 +13,7 @@ export default function Header() {
   const isHomePage = pathname === "/";
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm w-full">
+    <header className="sticky top-0 z-50 bg-black shadow-sm w-full">
       <div className="max-w-7xl mx-auto p-4">
         <div
           className={`flex items-center ${
@@ -22,7 +22,7 @@ export default function Header() {
         >
           <Link
             href={"/"}
-            className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 whitespace-nowrap cursor-pointer"
+            className="text-xl md:text-2xl lg:text-3xl font-bold text-white whitespace-nowrap cursor-pointer"
             data-testid="header-title"
           >
             Art Collection

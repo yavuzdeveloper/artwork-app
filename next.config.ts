@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
     domains: ["www.wavonline.com", "www.artic.edu"],
   },
   reportWebVitals,
+  i18n: {
+    locales: ["en", "tr"],
+    defaultLocale: "en",
+  },
 };
 
 export default withSentryConfig(nextConfig, {

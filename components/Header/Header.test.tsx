@@ -37,7 +37,7 @@ describe("Header Component", () => {
       "sticky",
       "top-0",
       "z-50",
-      "bg-white",
+      "bg-black",
       "shadow-sm",
       "w-full"
     );
