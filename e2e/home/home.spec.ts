@@ -164,3 +164,26 @@ test("should go back to home when browser back is used", async ({ page }) => {
   await page.goBack();
   await expect(page).toHaveURL("/");
 });
+
+// Footer
+test("footer should render and contain expected links", async ({ page }) => {
+  await page.goto("/");
+
+  const footer = page.locator("footer");
+  await expect(footer).toBeVisible();
+
+  const year = new Date().getFullYear();
+  await expect(footer).toContainText(`© ${year} Art Collection by`);
+
+  const linkedin = footer.getByRole("link", { name: /Yavuz Tokus/i });
+  await expect(linkedin).toHaveAttribute(
+    "href",
+    "https://www.linkedin.com/in/yavuztokus/"
+  );
+
+  const github = footer.getByRole("link", { name: "GitHub" });
+  await expect(github).toHaveAttribute(
+    "href",
+    "https://github.com/yavuzdeveloper"
+  );
+});
