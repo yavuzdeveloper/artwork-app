@@ -76,7 +76,7 @@ export default function Search() {
               className="hover:cursor-pointer"
               title="Search"
             >
-              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white" />
             </button>
             <input
               id="search-input"
@@ -109,7 +109,7 @@ export default function Search() {
           title="Search"
           data-testid="search-button"
         >
-          <SearchIcon className="w-6 h-6" />
+          <SearchIcon className="w-6 h-6 text-white" />
         </button>
       )}
     </div>

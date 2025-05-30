@@ -11,6 +11,15 @@ export default function Footer() {
             className="underline hover:text-gray-300 flex items-center gap-1"
           >
             Yavuz Tokus
+          </a>
+        </p>
+        <div className="flex gap-4">
+          <a
+            href="https://www.linkedin.com/in/yavuztokus/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-gray-300 flex items-center gap-1"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -23,8 +32,6 @@ export default function Footer() {
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11.5 20h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.787-1.75-1.755s.784-1.755 1.75-1.755 1.75.787 1.75 1.755-.784 1.755-1.75 1.755zm13 12.268h-3v-5.604c0-1.337-.025-3.059-1.866-3.059-1.868 0-2.154 1.46-2.154 2.964v5.699h-3v-11h2.884v1.5h.041c.402-.763 1.385-1.566 2.852-1.566 3.05 0 3.613 2.008 3.613 4.619v6.447z" />
             </svg>
           </a>
-        </p>
-        <div className="flex gap-4">
           <a
             href="https://github.com/yavuzdeveloper"
             target="_blank"

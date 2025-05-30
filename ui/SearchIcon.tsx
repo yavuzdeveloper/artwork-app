@@ -4,7 +4,7 @@ interface SearchIconProps {
   className?: string;
 }
 
-const SearchIcon: React.FC<SearchIconProps> = ({ className = "h-5 w-5" }) => {
+const SearchIcon: React.FC<SearchIconProps> = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
