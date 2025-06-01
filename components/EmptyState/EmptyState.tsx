@@ -14,7 +14,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
 }) => {
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center"
+      className="min-h-screen flex flex-col items-center mt-16"
       data-testid="empty-state"
     >
       <div className="flex justify-center mb-6">
