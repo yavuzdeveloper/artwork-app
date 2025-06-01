@@ -6,6 +6,7 @@ const Title = () => {
       href={"/"}
       className="text-xl md:text-2xl lg:text-3xl font-bold text-white whitespace-nowrap cursor-pointer"
       data-testid="header-title"
+      prefetch={false}
     >
       Art Collection
     </Link>

@@ -45,7 +45,9 @@ export default function PaginationShadcn({ page, searchQuery }: Props) {
         {page > 1 && (
           <PaginationItem>
             <PaginationLink asChild>
-              <Link href={getHref(1)}>1</Link>
+              <Link href={getHref(1)} prefetch={false}>
+                1
+              </Link>
             </PaginationLink>
           </PaginationItem>
         )}
@@ -55,20 +57,26 @@ export default function PaginationShadcn({ page, searchQuery }: Props) {
         {page > 2 && (
           <PaginationItem>
             <PaginationLink asChild>
-              <Link href={getHref(page - 1)}>{page - 1}</Link>
+              <Link href={getHref(page - 1)} prefetch={false}>
+                {page - 1}
+              </Link>
             </PaginationLink>
           </PaginationItem>
         )}
         {/* Current Page */}
         <PaginationItem>
           <PaginationLink asChild isActive>
-            <Link href={getHref(page)}>{page}</Link>
+            <Link href={getHref(page)} prefetch={false}>
+              {page}
+            </Link>
           </PaginationLink>
         </PaginationItem>
         {/* Next Page */}
         <PaginationItem>
           <PaginationLink asChild>
-            <Link href={getHref(page + 1)}>{page + 1}</Link>
+            <Link href={getHref(page + 1)} prefetch={false}>
+              {page + 1}
+            </Link>
           </PaginationLink>
         </PaginationItem>
         {/* Ellipsis */}
@@ -76,7 +84,9 @@ export default function PaginationShadcn({ page, searchQuery }: Props) {
         {/* Next */}
         <PaginationItem>
           <PaginationNext asChild>
-            <Link href={getHref(page + 1)}>{next}</Link>
+            <Link href={getHref(page + 1)} prefetch={false}>
+              {next}
+            </Link>
           </PaginationNext>
         </PaginationItem>
       </PaginationContent>
