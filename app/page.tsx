@@ -44,7 +44,6 @@ async function ArtworkGridWrapper({
           <Pagination
             page={pagination.current_page}
             searchQuery={searchQuery}
-            totalPages={pagination.total_pages}
           />
         </>
       )}

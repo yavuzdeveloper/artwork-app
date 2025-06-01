@@ -13,7 +13,10 @@ const EmptyState: React.FC<EmptyStateProps> = ({
   suggestion = "Try a different search term.",
 }) => {
   return (
-    <div className="text-center py-12" data-testid="empty-state">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center"
+      data-testid="empty-state"
+    >
       <div className="flex justify-center mb-6">
         <SearchIcon className="w-16 h-16 text-gray-400" />
       </div>
