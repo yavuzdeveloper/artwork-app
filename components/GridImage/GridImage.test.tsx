@@ -288,3 +288,4 @@ describe("GridImage", () => {
     expect(img).toHaveAttribute("src", "/fallback-image.jpg");
   });
 });
+
