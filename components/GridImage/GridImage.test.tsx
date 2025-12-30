@@ -1,6 +1,5 @@
 import React from "react";
-import { render, screen, act, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, act } from "@testing-library/react";
 
 import GridImage from "./GridImage";
 
@@ -20,8 +19,7 @@ jest.mock("next/image", () => ({
     height,
     priority,
     onError,
-    unoptimized,
-    "data-testid": testId,
+    ...props
   }: {
     src: string;
     alt: string;
@@ -34,13 +32,14 @@ jest.mock("next/image", () => ({
     "data-testid"?: string;
   }) {
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={src}
         alt={alt}
         className={className}
         width={width}
         height={height}
-        data-testid={testId || "image"}
+        data-testid={props["data-testid"] || "image"}
         loading={priority ? "eager" : "lazy"}
         onError={onError}
       />
@@ -58,7 +57,6 @@ describe("GridImage", () => {
 
   beforeEach(() => {
     jest.useFakeTimers();
-    // Clear all mocks before each test
     jest.clearAllMocks();
   });
 
@@ -72,7 +70,6 @@ describe("GridImage", () => {
 
     const img = screen.getByRole("img");
 
-    // Should render with the initial 843px image URL
     expect(img).toHaveAttribute(
       "src",
       "https://example.com/image-service/abc123/full/400,/0/default.jpg"
@@ -84,10 +81,11 @@ describe("GridImage", () => {
     expect(img).toHaveAttribute("height", "500");
   });
 
-  it("renders fallback image when artwork has no iiif_url", () => {
+  it("renders fallback image when artwork has no iiif_url or image_id", () => {
     const invalidArtwork = {
       ...mockArtwork,
       iiif_url: "",
+      image_id: "",
     };
 
     render(<GridImage artwork={invalidArtwork} className="test-class" />);
@@ -121,24 +119,19 @@ describe("GridImage", () => {
   });
 
   it("retries with smaller image (600px) on first error", async () => {
-    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-
     render(<GridImage artwork={mockArtwork} className="test-class" />);
 
     const img = screen.getByRole("img");
 
-    // Initially should have 843px image
     expect(img).toHaveAttribute(
       "src",
       "https://example.com/image-service/abc123/full/400,/0/default.jpg"
     );
 
-    // Trigger error on the image
     await act(async () => {
       img.dispatchEvent(new Event("error"));
     });
 
-    // Should now have 600px image (retry)
     expect(img).toHaveAttribute(
       "src",
       "https://example.com/image-service/abc123/full/600,/0/default.jpg"
@@ -146,18 +139,14 @@ describe("GridImage", () => {
   });
 
   it("falls back to fallback image on second error", async () => {
-    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-
     render(<GridImage artwork={mockArtwork} className="test-class" />);
 
     const img = screen.getByRole("img");
 
-    // First error - should retry with 600px
     await act(async () => {
       img.dispatchEvent(new Event("error"));
     });
 
-    // Second error - should fallback
     await act(async () => {
       img.dispatchEvent(new Event("error"));
     });
@@ -172,18 +161,15 @@ describe("GridImage", () => {
 
     const img = screen.getByRole("img");
 
-    // Trigger first error
     await act(async () => {
       img.dispatchEvent(new Event("error"));
     });
 
-    // Should have 600px after first error
     expect(img).toHaveAttribute(
       "src",
       "https://example.com/image-service/abc123/full/600,/0/default.jpg"
     );
 
-    // Change artwork to a new one
     const newArtwork = {
       ...mockArtwork,
       image_id: "def456",
@@ -193,13 +179,11 @@ describe("GridImage", () => {
       rerender(<GridImage artwork={newArtwork} className="test-class" />);
     });
 
-    // Should reset to 843px for new artwork
     expect(img).toHaveAttribute(
       "src",
       "https://example.com/image-service/def456/full/400,/0/default.jpg"
     );
 
-    // Error on new artwork should retry again
     await act(async () => {
       img.dispatchEvent(new Event("error"));
     });
@@ -225,7 +209,7 @@ describe("GridImage", () => {
   it("uses default alt text when title is undefined", () => {
     const noTitleArtwork = {
       ...mockArtwork,
-      title: undefined,
+      title: "",
     };
 
     render(<GridImage artwork={noTitleArtwork} className="test-class" />);
@@ -285,10 +269,22 @@ describe("GridImage", () => {
     render(<GridImage artwork={trailingSlashArtwork} className="test-class" />);
 
     const img = screen.getByRole("img");
-    // Should handle the double slash correctly
     expect(img).toHaveAttribute(
       "src",
       "https://example.com/image-service/abc123/full/400,/0/default.jpg"
     );
+  });
+
+  it("handles empty iiif_url and image_id strings", () => {
+    const emptyStringArtwork = {
+      ...mockArtwork,
+      iiif_url: "",
+      image_id: "",
+    };
+
+    render(<GridImage artwork={emptyStringArtwork} className="test-class" />);
+
+    const img = screen.getByRole("img");
+    expect(img).toHaveAttribute("src", "/fallback-image.jpg");
   });
 });
